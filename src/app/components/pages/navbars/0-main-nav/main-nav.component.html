@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">    
+<a class="navbar-brand" routerLink="/">KSJ Karaoke<br>Song Book{{ envName }}</a>
+
+<button 
+class="navbar-toggler navbar-toggler-right"
+type="button" (click)="toggleCollapse()">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div [ngbCollapse]="_AUTH.showMainNav" class="navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item" *ngIf='_AUTH.adminRights([0])'>
+<button class="btn btn-outline-success my-2 my-sm-0" routerLink="/searchSong" routerLinkActive="active">Search<br>For A<br>Song</button>
+</li>
+<li class="nav-item" *ngIf='_AUTH.adminRights([1])'>
+<button class="btn btn-outline-success my-2 my-sm-0" routerLink="/upcomingRequest" routerLinkActive="active">Upcoming<br>Requests</button>
+</li>
+</ul>
+<!-- Admin Menus -->
+<ul class="navbar-nav my-2 my-lg-0">
+<li class="nav-item"  *ngIf='_AUTH.adminRights([2])'>
+<button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/profile" routerLinkActive="active">Singers<br>Team<br>Profile<br></button>
+</li>       
+<li class="nav-item" *ngIf='_AUTH.adminRights([3])'>
+<button class="btn btn-outline-warning my-2 my-sm-0" routerLink="/adminDJ" routerLinkActive="active">Admin<br>>> DJ</button>
+</li>
+<li class="nav-item" *ngIf='_AUTH.adminRights([4])'>
+<button class="btn btn-outline-warning my-2 my-sm-0" routerLink="/adminSetUp" routerLinkActive="active">Admin<br>>> Set Up</button>
+</li>
+
+<li class="nav-item">
+<button class="btn btn-outline-warning my-2 my-sm-0" routerLink="/loginRegister" *ngIf='!_AUTH.userLoggedIn()' routerLinkActive="active">Log In<br>Create A Profile</button>
+</li>
+<li class="nav-item">                    
+<button class="btn btn-outline-danger my-2 my-sm-0" *ngIf='_AUTH.userLoggedIn()' (click)='doLogOut();'>Leave<br>The<br>Party.</button>
+</li>
+</ul>
+</div>
+</nav>

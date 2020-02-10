@@ -35,7 +35,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/KaraokeRequestSongBookAngular7App",
+            "outputPath": "../KaraokeRequestSongBookNodeServer",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -45,10 +45,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+            "styles": [ 
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css" ],
+          "scripts": []
           },
           "configurations": {
             "production": {
