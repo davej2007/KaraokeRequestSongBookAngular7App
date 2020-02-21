@@ -16,10 +16,12 @@ import { SetUpNewPartyComponent } from './components/pages/section2/set-up-new-p
 import { UpdateSongFilesComponent } from './components/pages/section2/update-song-files/update-song-files.component';
 import { AdmendPartyDetailsComponent } from './components/pages/section2/admend-party-details/admend-party-details.component';
 import { NewDJComponent } from './components/pages/section2/new-dj/new-dj.component';
+import { RedirectAfterLoginComponent } from './components/pages/navbars/0-main-nav/0-redirect-after-login/redirect-after-login.component';
 
 
 const routes: Routes = [
   { path:'', component:WelcomeComponent},
+  { path:'afterLogin', component:RedirectAfterLoginComponent},
   { path:'loginRegister', component:LoginRegisterComponent},
   { path:'searchSong', component:SearchForASongComponent},
   { path:'upcomingRequest', component:UpcomingRequestComponent},

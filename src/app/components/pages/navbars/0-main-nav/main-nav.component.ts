@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { AUTHService } from 'src/app/components/AUTHModule/AUTH.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LogOutModalContent } from './logoutModal/logout';
 
 @Component({
   selector: 'main-nav',
@@ -13,8 +15,8 @@ export class MainNavComponent implements OnInit {
 
   constructor(
     public _AUTH:AUTHService,
-    public _Router:Router,
-    // public modalService: NgbModal
+    public _Router:Router,      
+    public modalService: NgbModal
     ) { }
 
     ngOnInit(){
@@ -24,7 +26,6 @@ export class MainNavComponent implements OnInit {
     }
   // Variables
   public envName = environment.name;
-  public isNavbarCollapsed:Boolean = false;
   
   toggleCollapse() {
     if (!this._AUTH.adminOpen) {
@@ -39,7 +40,16 @@ export class MainNavComponent implements OnInit {
       }
     }
   }
-  // doLogOut(){
+  doLogOut(){
+    this.modalService.open(LogOutModalContent, {backdrop:'static'}).result.then(
+      res => {
+        this._AUTH.doLogOut();
+        this._Router.navigateByUrl('/afterLogin');
+      },
+      reason => { }
+    );
+  }
+
   //   this.modalService.open(LogOutModalContent, {backdrop:'static'}).result.then(
   //     res => {
   //       if(res.success){

@@ -1,91 +1,133 @@
 <div class="container">
-    {{ page }}
-    <ul class="nav nav-tabs nav-fill sectionNav">
-        <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active':page == 0}">Basic Info</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active':page == 1}">Admin Rights</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active':page == 2}">Select Rota</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active':page == 3}">Confirm</a>
-        </li>
-    </ul>
-    <!-- Basic Info -->
-    <div class='mainform' *ngIf="page == 0"> 
-        <h4>Enter New DJ Details</h4>
-        <br>
-        <form [formGroup]='newDJForm'>
-          <div class="form-group row"> <!-- number   -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="djNumber">DJ Ref Number : </span>
-              </div>
-              <input type="text" class="form-control" aria-describedby="djNumber"
-                [class.is-invalid]='(number.invalid || !numberValid) && number.touched'
-                [class.is-valid]='(number.valid || numberValid) && number.touched'
-                formControlName='number' id="number"
-                placeholder="Enter Your DJ Ref Number" (blur)='checkDJNumber()'>
-            </div>
-            <ul *ngIf='(number.invalid || !numberValid) && number.touched '> <!-- error messages -->
-              <li *ngIf='number.errors?.required' class='text-danger'>DJ Ref Number Is Required</li>
-              <li *ngIf='number.errors?.isError' class='text-danger'>DJ Ref Number Is 7 Digits Long</li>
-              <li *ngIf='!numberValid' class='text-danger'>{{ numberMessage }}</li>
-            </ul>
+  {{ page }}
+  <ul class="nav nav-tabs nav-fill sectionNav">
+      <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active':page == 0}">Basic Info</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active':page == 1}">Admin Rights</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active':page == 2}">Confirm</a>
+      </li>
+  </ul>
+  <!-- Basic Info -->
+  <div class='mainform' *ngIf="page == 0"> 
+    <h4>Enter New DJ Details</h4>
+    <br>
+    <form [formGroup]='newDJForm'>
+      <div class="form-group row"> <!-- User Number   -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="djNumber">DJ User Number : </span>
           </div>
-          <div class="form-group row"> <!-- name   -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="djName">Employee Name : </span>
-              </div>
-              <input type="text" class="form-control" aria-describedby="djName"
-                      [class.is-invalid]='name.invalid && name.touched '
-                      [class.is-valid]='name.valid && name.touched'
-                      formControlName='name' id="name" placeholder="Enter Your Name">
-            </div>
-            <ul *ngIf='name.invalid && name.touched'> <!-- error messages -->
-              <li *ngIf='name.errors?.required' class='text-danger'>Your Name Is Required</li>
-              <li *ngIf='name.errors?.minlength || name.errors?.maxlength' class='text-danger'>Your Name Should Between 5 and 50 Letters Long</li>
-              <li *ngIf='name.errors?.isError' class='text-danger'>Your Name Should Only Be Letters</li>
-            </ul>
+          <input type="text" class="form-control" aria-describedby="djNumber"
+            [class.is-invalid]='(number.invalid || !numberValid) && number.touched'
+            [class.is-valid]='(number.valid || numberValid) && number.touched'
+            formControlName='number' id="number"
+            placeholder="Enter Your DJ User Number" (blur)='checkDJNumber()'>
+        </div>
+        <ul *ngIf='(number.invalid || !numberValid) && number.touched '> <!-- error messages -->
+          <li *ngIf='number.errors?.required' class='text-danger'>DJ Ref Number Is Required</li>
+          <li *ngIf='number.errors?.isError' class='text-danger'>DJ Ref Number Is 7 Digits Long</li>
+          <li *ngIf='!numberValid' class='text-danger'>{{ numberMessage }}</li>
+        </ul>
+      </div>
+      <div class="form-group row"> <!-- name   -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="djName">Name : </span>
           </div>
-          <div class="form-group row"> <!-- Password   -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="djPassword">Password : </span>
-              </div>
-              <input aria-describedby="djPassword"
-              [class.is-invalid]='password.invalid && password.touched'
-              [class.is-valid]='password.valid && password.touched'
-              formControlName='password' type="text" class="form-control" id="password" placeholder="Password">
-              <div class="input-group-append">
-                <button class="btn btn-outline-success" type="button" [disabled]='generate' (click)='generatePassword()'>Generate</button>
+          <input type="text" class="form-control" aria-describedby="djName"
+                  [class.is-invalid]='name.invalid && name.touched '
+                  [class.is-valid]='name.valid && name.touched'
+                  formControlName='name' id="name" placeholder="Enter Your Name">
+        </div>
+        <ul *ngIf='name.invalid && name.touched'> <!-- error messages -->
+          <li *ngIf='name.errors?.required' class='text-danger'>Your Name Is Required</li>
+          <li *ngIf='name.errors?.minlength || name.errors?.maxlength' class='text-danger'>Your Name Should Between 5 and 50 Letters Long</li>
+          <li *ngIf='name.errors?.isError' class='text-danger'>Your Name Should Only Be Letters</li>
+        </ul>
+      </div>
+      <div class="form-group row"> <!-- Password   -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="djPassword">Password : </span>
+          </div>
+          <input aria-describedby="djPassword"
+          [class.is-invalid]='password.invalid && password.touched'
+          [class.is-valid]='password.valid && password.touched'
+          formControlName='password' type="text" class="form-control" id="password" placeholder="Password">
+          <div class="input-group-append">
+            <button class="btn btn-outline-success" type="button" [disabled]='generate' (click)='generatePassword()'>Generate</button>
+          </div>
+        </div>
+        <ul *ngIf='password.invalid && password.touched'> <!-- error messages -->
+          <li *ngIf='password.errors?.required' class='text-danger'>A Password Is Required</li>
+          <li *ngIf='password.errors?.minlength || password.errors?.maxlength' class='text-danger'>Password Should Between 8 and 30 Characters Long</li>
+          <li *ngIf='password.errors?.isError' class='text-danger'>Invalid Password</li>
+        </ul>
+      </div>
+    </form>
+  </div>
+  <!-- Admin Rights -->
+  <div class='mainform' *ngIf="page == 1">
+    <h4>Admin Rights : Active Pages Shown In Red</h4>
+    <br>
+    <div class='adminTable'>
+      <div *ngFor='let a of adminSections'>
+        <div class='row adminheader'> {{ a.navBar }} </div>
+        <div class='row'>
+          <div class="col-12 col-sm-3 col-md-4 adminCheckBox" [class.active]='b.admin' *ngFor='let b of a.section'>
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" [(ngModel)]='b.admin'>
+                <label class="form-check-label"> {{b.name}} </label>
               </div>
             </div>
-            <ul *ngIf='password.invalid && password.touched'> <!-- error messages -->
-              <li *ngIf='password.errors?.required' class='text-danger'>A Password Is Required</li>
-              <li *ngIf='password.errors?.minlength || password.errors?.maxlength' class='text-danger'>Password Should Between 8 and 30 Characters Long</li>
-              <li *ngIf='password.errors?.isError' class='text-danger'>Invalid Password</li>
-            </ul>
           </div>
-        </form>
+        </div>
+      </div>
     </div>
-
-    <div class='messages'> <!-- messages -->
-        <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
-        <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
+  </div>
+   <!-- Confirm -->
+  <div class='mainform' *ngIf="page == 2">
+    <h4>Confirm</h4>
+    <table class="table">
+      <tbody>
+        <tr> <td>DJ Name</td> <td>{{ name.value }}</td> </tr>
+        <tr> <td>User Number</td> <td>{{ number.value }}</td> </tr>
+        <tr> <td>password</td> <td>{{ password.value }}</td> </tr>
+      </tbody>
+    </table>
+    <div class='adminTable'>
+      <div class="header">Admin : Active Pages Shown in Red</div>
+      <div *ngFor='let a of adminSections'>
+        <div class='row adminheader'>
+          {{ a.navBar }}
+        </div>
+        <div class='row'>
+          <div class="col-6 col-md-4 adminButton" [class.active]='b.admin' *ngFor='let b of a.section'>
+            {{ b.name }}
+          </div>
+        </div>
+      </div>
     </div>
-    <div *ngIf='!successMsg && !errorMsg'>
-        <button type="button" class="btn btn-outline-dark btn-sm prevBtn" [disabled]='processing'
-            *ngIf='page > 0' (click)='page = prevPage(page)'>Previous</button>
-        <button type="button" class="btn btn-success btn-sm prevBtn" [disabled]='processing'
-            (click)="cancel()">Cancel</button>
-        <button type="button" class="btn btn-outline-dark btn-sm nextBtn" [disabled]='processing' 
-            *ngIf='page != 3' (click)='page = nextPage(page)'>Next</button>
-        <button type="button" class="btn btn-warning btn-sm nextBtn" [disabled]='!newEmployeeForm.valid || !employeeRotaForm.valid || processing'
-            *ngIf='page == 3' (click)="submit()">Create New DJ</button>
-    </div>
+  </div>
+  <!-- messages -->
+  <div class='messages'> 
+      <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
+      <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
+  </div>
+  <!-- Buttons -->
+  <div *ngIf='!successMsg && !errorMsg'>
+    <button type="button" class="btn btn-outline-dark btn-sm prevBtn" [disabled]='processing'
+      *ngIf='page > 0' (click)='page = prevPage(page)'>Previous</button>
+    <button type="button" class="btn btn-success btn-sm prevBtn" [disabled]='processing'
+      (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-outline-dark btn-sm nextBtn" [disabled]='processing' 
+      *ngIf='page != 2' (click)='page = nextPage(page)'>Next</button>
+    <button type="button" class="btn btn-warning btn-sm nextBtn" [disabled]='!newDJForm.valid || processing'
+      *ngIf='page == 2' (click)="submit()">Create New DJ</button>
+  </div>
 </div>

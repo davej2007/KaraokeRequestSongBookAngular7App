@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Confirm Log Out</h4>
+</div>
+<div class="modal-body">
+  <h2>Please Confirm You</h2>
+  <h2>Want To Log Out</h2>
+</div>
+<div class="modal-footer">
+  <div *ngIf='!successMsg && !errorMsg'>
+    <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Confirm')">Yes : {{remainingTime}}sec</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('Cancel')">Cancel</button>
+  </div>
+  <div class='messages'> <!-- messages -->
+      <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
+      <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
+  </div>
+</div>

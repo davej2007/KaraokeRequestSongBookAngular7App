@@ -27,27 +27,32 @@ import { AdmendPartyDetailsComponent } from './components/pages/section2/admend-
 import { ResetPasswordComponent } from './components/pages/section1/reset-password/reset-password.component';
 import { ViewRequestsComponent } from './components/pages/section1/view-requests/view-requests.component';
 import { ViewTeamsComponent } from './components/pages/section1/view-teams/view-teams.component';
+import { LogOutModalContent } from './components/pages/navbars/0-main-nav/logoutModal/logout';
+import { RedirectAfterLoginComponent } from './components/pages/navbars/0-main-nav/0-redirect-after-login/redirect-after-login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
-    MainNavComponent,
-    DjNavComponent,
-    AdminNavComponent,
-    SearchForASongComponent,
-    UpcomingRequestComponent,
-    SingerProfileComponent,
-    WelcomeComponent,
     LoginRegisterComponent,
     InitilizeWebSiteComponent,
-    NewDJComponent,
-    SetUpNewPartyComponent,
-    UpdateSongFilesComponent,
-    AdmendPartyDetailsComponent,
-    ResetPasswordComponent,
-    ViewRequestsComponent,
-    ViewTeamsComponent
+    PageNotFoundComponent,
+    WelcomeComponent,
+    MainNavComponent,
+      LogOutModalContent,
+      RedirectAfterLoginComponent,
+      SearchForASongComponent,
+      UpcomingRequestComponent,
+      SingerProfileComponent,
+    DjNavComponent,
+      ResetPasswordComponent,
+      ViewRequestsComponent,
+      ViewTeamsComponent,
+    AdminNavComponent,
+      NewDJComponent,
+      SetUpNewPartyComponent,
+      UpdateSongFilesComponent,
+      AdmendPartyDetailsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,7 @@ import { ViewTeamsComponent } from './components/pages/section1/view-teams/view-
   entryComponents: [  // navbar modals 
     // RenewModalContent,
     // LogInModalContent,
-    // LogOutModalContent,
+    LogOutModalContent,
     // EditModalContent, // StartTimes Edit Modal
   ],
   providers: [
