@@ -65,8 +65,13 @@ export class NewDJComponent implements OnInit {
     this.password.setValue(temp);
     this.generate = false;
   }
-  checkDJNumber(){}
-  cancel(){}
+  checkDJNumber(){
+    
+  }
+  cancel(){
+    this.disableForm();
+    this._Router.navigate(['/adminSetUp']);
+  }
   // submit form and Save
   submit() {
     this.disableForm();
@@ -80,7 +85,6 @@ export class NewDJComponent implements OnInit {
     newDJ.admin = asg.join("");
     this._DJ.createDJ(newDJ).subscribe(
       res => {
-        console.log(res);
         if(res.success){
           this.successMsg='New Admin User Created : '+res.dj.name+' : '+res.dj.number;
           setTimeout(()=>{

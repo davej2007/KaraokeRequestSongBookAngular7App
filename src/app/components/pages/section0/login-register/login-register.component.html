@@ -1,1 +1,80 @@
-<p>login-register works!</p>
+<div class="col-md-6 offset-md-3 loginForm">
+  <ul class="nav nav-tabs nav-fill sectionNav">
+      <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active':login}" (click)='login=true;'>Log In</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active':!login}" (click)='login=false;'>Create A Team</a>
+      </li>
+  </ul>
+<!-- Log in -->
+  <div class='mainform' *ngIf="login">
+      <h4>Log In</h4>
+      <br>
+    <form [formGroup]='loginDJForm'>
+      <div class="form-group row"> <!-- User Number   -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="djNumber">Team Ref. Number : </span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="djNumber"
+            [class.is-invalid]='(number.invalid || !numberValid) && number.touched'
+            [class.is-valid]='(number.valid || numberValid) && number.touched'
+            formControlName='number' id="number"
+            placeholder="Enter Your Team Ref. Number" (blur)='checkDJNumber()'>
+        </div>
+        <ul *ngIf='(number.invalid || !numberValid) && number.touched '> <!-- error messages -->
+          <li *ngIf='number.errors?.required' class='text-danger'>Team Ref Number Is Required</li>
+          <li *ngIf='number.errors?.isError' class='text-danger'>DJ Ref Number Is 7 Digits Long</li>
+          <li *ngIf='!numberValid' class='text-danger'>{{ numberMessage }}</li>
+        </ul>
+      </div>
+      <div class="form-group row"> <!-- Password   -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="djPassword">Password : </span>
+          </div>
+          <input aria-describedby="djPassword"
+          [class.is-invalid]='password.invalid && password.touched'
+          [class.is-valid]='password.valid && password.touched'
+          formControlName='password' type="text" class="form-control" id="password" placeholder="Password">
+        </div>
+        <ul *ngIf='password.invalid && password.touched'> <!-- error messages -->
+          <li *ngIf='password.errors?.required' class='text-danger'>A Password Is Required</li>
+          <li *ngIf='password.errors?.minlength || password.errors?.maxlength' class='text-danger'>Password Should Between 8 and 30 Characters Long</li>
+          <li *ngIf='password.errors?.isError' class='text-danger'>Invalid Password</li>
+        </ul>
+      </div>
+      <div class="form-group row"> <!-- Party   -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="djParty">Party : </span>
+          </div>
+          <input aria-describedby="djParty"
+          [class.is-invalid]='party.invalid && party.touched'
+          [class.is-valid]='party.valid && party.touched'
+          formControlName='party' type="text" class="form-control" id="party" placeholder="Party Code">
+        </div>
+        <ul *ngIf='party.invalid && party.touched'> <!-- error messages -->
+
+        </ul>
+      </div>
+    </form>
+    <!-- messages -->
+    <div class='messages'> 
+      <div class="alert alert-success" role="alert" *ngIf='successMsg'>{{ successMsg }}</div>
+      <div class="alert alert-danger" role="alert" *ngIf='errorMsg'>{{ errorMsg }}</div>
+    </div>
+    <div *ngIf='!successMsg && !errorMsg'>
+      <button type="button" class="btn btn-success btn-sm prevBtn" [disabled]='processing'
+        (click)="cancel()">Cancel</button>
+      <button type="button" class="btn btn-warning btn-sm nextBtn" [disabled]='!loginDJForm.valid || processing'
+        (click)="logInSubmit()">Log In</button>
+    </div>
+  </div>
+
+  <!--  Register Team -->
+  <div class='mainform' *ngIf="!login">
+      <h4>Create A Team</h4>
+  </div>
+</div>
